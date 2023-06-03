@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Verilog Labs/Lab 3/Mod 12 Loadable Up Counter/Mod 12 Loadable Up Counter.srcs/sources_1/new/Mod12_Loadable_UpCounter.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Mod12_Loadable_UpCounter
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Verilog Labs/Lab 3/Mod 12 Loadable Up Counter/Mod 12 Loadable Up Counter.srcs/sources_1/new/Mod12_Loadable_UpCounter_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Mod12_Loadable_UpCounter_tb
