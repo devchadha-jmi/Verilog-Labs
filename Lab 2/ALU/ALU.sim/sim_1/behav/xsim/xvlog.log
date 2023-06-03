@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Verilog Labs/Lab 2/ALU/ALU.srcs/sources_1/new/ALU_Top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU_Top
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Verilog Labs/Lab 2/ALU/ALU.srcs/sources_1/new/ALU_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU_tb
