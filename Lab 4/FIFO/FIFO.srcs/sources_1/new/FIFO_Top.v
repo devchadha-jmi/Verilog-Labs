@@ -62,7 +62,29 @@ module FIFO_Top(
     // fifo_counter to check memory occupancy.
     // fifo_counter starts from 0(empty) increments 
     // if memory write occur and decremnts if memory read occurs
-    always @ (posedge clk_a or posedge clk_b or posedge rst)
+    always @ (posedge clk_a /*or posedge clk_b*/ or posedge rst)
+    begin
+        // case of reset
+        if (rst)
+            fifo_counter <= 0;
+            
+        // Simultaneous Read and Write - No effect on fifo_counter value
+        else if ((!buf_full && wr_en) && (!buf_empty && rd_en))
+            fifo_counter <= fifo_counter;
+            
+        // Read
+        //else if (!buf_empty && rd_en)
+            //fifo_counter <= fifo_counter - 1;
+            
+        // Write
+        else if (!buf_full && wr_en)
+            fifo_counter <= fifo_counter + 1;
+            
+        else 
+            fifo_counter <= fifo_counter;
+    end
+    
+    always @ (posedge clk_b /*or posedge clk_a*/ or posedge rst)
     begin
         // case of reset
         if (rst)
@@ -77,8 +99,8 @@ module FIFO_Top(
             fifo_counter <= fifo_counter - 1;
             
         // Write
-        else if (!buf_full && wr_en)
-            fifo_counter <= fifo_counter + 1;
+        //else if (!buf_full && wr_en)
+            //fifo_counter <= fifo_counter + 1;
             
         else 
             fifo_counter <= fifo_counter;
@@ -110,7 +132,28 @@ module FIFO_Top(
     end
     
     // Pointer Update
-    always @ (posedge clk_a or posedge clk_b or posedge rst)
+    always @ (posedge clk_a /*or posedge clk_b*/ or posedge rst)
+    begin
+        if (rst) 
+            begin
+                rd_ptr <= 0;
+                wr_ptr <= 0;
+            end
+       else
+            begin
+                // Read Pointer Update
+                /*if(!buf_empty && rd_en)
+                    rd_ptr <= rd_ptr + 1;
+                else 
+                    rd_ptr <= rd_ptr;*/
+                // Write Pointer Update    
+                if(!buf_full && wr_en)
+                    wr_ptr <= wr_ptr + 1;
+                else
+                    wr_ptr <= wr_ptr;
+            end            
+    end   
+    always @ (posedge clk_b /*or posedge clk_a*/ or posedge rst)
     begin
         if (rst) 
             begin
@@ -125,10 +168,10 @@ module FIFO_Top(
                 else 
                     rd_ptr <= rd_ptr;
                 // Write Pointer Update    
-                if(!buf_full && wr_en)
+                /*if(!buf_full && wr_en)
                     wr_ptr <= wr_ptr + 1;
                 else
-                    wr_ptr <= wr_ptr;
+                    wr_ptr <= wr_ptr;*/
             end            
     end   
 endmodule
