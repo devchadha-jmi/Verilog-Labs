@@ -1,4 +1,0 @@
-INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Verilog Labs/Lab 4/FIFO/FIFO.srcs/sources_1/new/FIFO_Top.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module FIFO_Top
-INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Verilog Labs/Lab 4/FIFO/FIFO.srcs/sources_1/new/FIFO_tb.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module FIFO_tb
