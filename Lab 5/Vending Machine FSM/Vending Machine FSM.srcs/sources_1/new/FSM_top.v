@@ -26,41 +26,34 @@ module FSM_top(
     input clk,
     output reg X,
     output reg Y,
-    output [1:0] state_out
+    output [1:0] state_out,
+    output [1:0] Money_Recieved 
     );
     
-    parameter IDLE     = 2'b00,  // IDLE State, no money recieved or product delivered
-              MON_REC  = 2'b01,  // Money being recieved and getting added up
-              DEL_MONR = 2'b10;  // Product delivery and extra money being returned
+    parameter IDLE     = 2'b00,
+              OneRupee = 2'b01,
+              TwoRupee = 2'b10;
               
-    reg [1:0] Money_Recieved;    // Cummulates money being recieved in states
-    
-    reg [1:0] state, next_state; // Stores state transition logic
-    
-    always @ (posedge clk)
+    reg [1:0] state;
+    reg [1:0] next_state;
+    reg [2:0] money_recieved = 3'b0;
+              
+      always @ (posedge clk)
         begin
             state <= next_state;
-        end
-    
-    always @ (I or J or state)
+        end       
+      
+      always @ (*)
         begin
-        next_state <= IDLE;
             case (state)
             IDLE: begin 
-                    next_state <= (I) ? MON_REC : IDLE;
-                    Money_Recieved <= Money_Recieved + 1'b1 + J;
+                    next_state       <= ({IJ} = 2'b10) ? OneRupee : ({IJ} = 2'b11) ? TwoRupee : 0;
+                    money_recieved   <= ({IJ} = 2'b10) ? money_recieved + 3'b001 : ({IJ} = 2'b11) ? money_recieved + 3'b010 : money_recieved;
                   end
-          MON_REC: begin
-                    next_state <= (Money_Recieved >= 3) ? DEL_MONR : MON_REC;
-                    Money_Recieved <= Money_Recieved + 1'b1 + J; 
-                   end
-         DEL_MONR: begin
-                    next_state <= IDLE;
-                    X <= 1;
-                    Y <= (Money_Recieved > 3) ? 1 : 0;
-                    Money_Recieved <= 0; 
-                   end
-             endcase
-        end
-        assign state_out = state;       
+            OneRupee: begin
+                        next_state       <= ({IJ} = 2'b10) ? OneRupee : ({IJ} = 2'b11) ? TwoRupee : 0;
+                        money_recieved   <= ({IJ} = 2'b10) ? money_recieved + 3'b001 : ({IJ} = 2'b11) ? money_recieved + 3'b010 : money_recieved;
+                  end 
+                  endcase 
+        end           
 endmodule

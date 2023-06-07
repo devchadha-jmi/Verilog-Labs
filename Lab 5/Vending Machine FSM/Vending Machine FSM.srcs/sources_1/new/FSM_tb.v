@@ -2,6 +2,7 @@ module FSM_tb;
     reg I, J, clk;
     wire X, Y;
     wire [1:0] state;
+    wire [1:0] Money_Recieved;
 
     // Instantiate the FSM_top module
     FSM_top dut (
@@ -10,7 +11,8 @@ module FSM_tb;
         .clk(clk),
         .X(X),
         .Y(Y),
-        .state_out(state)
+        .state_out(state),
+        .Money_Recieved(Money_Recieved)
     );
 
     // Clock generation

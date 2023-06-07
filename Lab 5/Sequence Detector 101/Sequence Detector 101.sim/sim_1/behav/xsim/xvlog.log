@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Verilog Labs/Lab 5/Sequence Detector 101/Sequence Detector 101.srcs/sources_1/new/SeqDetTop.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module SeqDetTop
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Verilog Labs/Lab 5/Sequence Detector 101/Sequence Detector 101.srcs/sources_1/new/SeqDetTb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module SeqDetTb

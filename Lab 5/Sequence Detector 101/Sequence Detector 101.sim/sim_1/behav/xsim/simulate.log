@@ -1,0 +1,5 @@
+Time resolution is 1 ps
+seq_det = x
+seq_det = 0
+seq_det = 0
+$finish called at time : 30 ns : File "D:/Verilog Labs/Lab 5/Sequence Detector 101/Sequence Detector 101.srcs/sources_1/new/SeqDetTb.v" Line 66
